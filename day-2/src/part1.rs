@@ -42,7 +42,7 @@ fn parse_line(line: String) -> Result<Entry, Box<dyn std::error::Error>> {
 }
 
 // solve attempts to solve Day 2 Part 1 of AoC.
-// Parse each line of the index, then get the number
+// Parse each line of the input, then get the number
 // of occurrences of the character specified in the password.
 // Check this number against the limits, then record
 // if it passed the criteria.

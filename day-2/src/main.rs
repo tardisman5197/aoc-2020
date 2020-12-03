@@ -1,5 +1,6 @@
 // Declare the modules in the package
 mod part1;
+mod part2;
 
 extern crate utils;
 
@@ -11,6 +12,7 @@ fn main() -> Result<(),  Box<dyn std::error::Error>> {
     // Run and print the result
     println!("Day 1:");
     println!("\tPart 1: {}", part1::solve(&lines)?);
+    println!("\tPart 2: {}", part2::solve(&lines)?);
 
     Ok(())
 }
