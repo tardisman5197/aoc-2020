@@ -1,5 +1,6 @@
 // Declare the modules in the package
 mod part1;
+mod part2;
 
 extern crate utils;
 
@@ -9,7 +10,9 @@ fn main() -> Result<(),  Box<dyn std::error::Error>> {
     let lines: Vec<String> = utils::read_file_lines("./inputs/day1.txt".to_string())?;
 
     // Run and print the result
-    println!("Day 1:\n\tPart 1: {}\n",part1::solve(lines)?);
+    println!("Day 1:");
+    println!("\tPart 1: {}", part1::solve(&lines)?);
+    println!("\tPart 2: {}", part2::solve(&lines)?);
 
     Ok(())
 }

@@ -6,7 +6,7 @@ extern crate utils;
 // the input file is read. If the partner value is found
 // for the current entry in the entries set then the
 // result is the product of the pair of values.
-pub fn solve(lines: Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
+pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
     let mut entries: HashSet<i32> = HashSet::new();
 
     // Loop through each line of the input
@@ -53,7 +53,7 @@ mod tests {
             "1456".to_string(),
         ];
         
-        assert_eq!(solve(input)?, 514579);
+        assert_eq!(solve(&input)?, 514579);
         Ok(())
     }
 }
