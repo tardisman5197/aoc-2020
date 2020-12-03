@@ -9,7 +9,7 @@ use std::time::{Instant};
 // main runs each part of the day's challenges
 fn main() -> Result<(),  Box<dyn std::error::Error>> {
     // Read in the input
-    let lines: Vec<String> = utils::read_file_lines("./inputs/day1.txt".to_string())?;
+    let lines: Vec<String> = utils::read_file_lines("./inputs/day3.txt".to_string())?;
 
     // Run the solutions
     let start = Instant::now();
@@ -25,8 +25,5 @@ fn main() -> Result<(),  Box<dyn std::error::Error>> {
     println!("\tPart 1: {} ({:?})", part1_solution, part1_duration);
     println!("\tPart 2: {} ({:?})", part2_solution, part2_duration);
 
-
     Ok(())
 }
-
-
