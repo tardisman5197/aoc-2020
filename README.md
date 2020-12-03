@@ -1,5 +1,7 @@
 # aoc-2020
 
+![Rust](https://github.com/tardisman5197/aoc-2020/workflows/Rust/badge.svg?branch=main)
+
 Using 2020's Advent of Code to learn Rust. Hopefully I will get through the majority of the days.
 
 ## Prerequisites
