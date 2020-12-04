@@ -1,6 +1,12 @@
 extern crate utils;
 
 // solve attempts to solve part 1 of day 3 of AoC 2020.
+// For each line check how far right we are based
+// on the problem specification. Then use modulo maths
+// to check what the character is at that right value.
+// If the character found is a '#' (A Tree), then count
+// it and the result of the function is the number of
+// trees on the given path.
 pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
     let mut tree_count = 0;
 
