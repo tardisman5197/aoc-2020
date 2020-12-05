@@ -5,7 +5,7 @@ extern crate utils;
 struct Entry {
     indexes: Vec<usize>,
     character: char,
-    password: String
+    password: String,
 }
 
 // parse_line takes a line from Day 2's input and attempts
@@ -18,23 +18,34 @@ fn parse_line(line: String) -> Result<Entry, Box<dyn std::error::Error>> {
     //  password
     let fields: Vec<String> = line.split_whitespace().map(String::from).collect();
     if fields.len() != 3 {
-        return Err(Box::new(utils::errors::SomethingIsWrongError::new("Invalid Entry")))
+        return Err(Box::new(utils::errors::SomethingIsWrongError::new(
+            "Invalid Entry",
+        )));
     };
 
     // Parse the lower and upper limits
-    let limits: Vec<usize> = fields[0].split("-").flat_map(|limit| limit.parse::<usize>()).collect();
+    let limits: Vec<usize> = fields[0]
+        .split("-")
+        .flat_map(|limit| limit.parse::<usize>())
+        .collect();
     if limits.len() != 2 {
-        return Err(Box::new(utils::errors::SomethingIsWrongError::new("Invalid Entry, indexes are wrong")))
+        return Err(Box::new(utils::errors::SomethingIsWrongError::new(
+            "Invalid Entry, indexes are wrong",
+        )));
     };
 
     // Get the character.
     let character: char = match fields[1].chars().nth(0) {
         Some(characters) => characters,
-        None => return Err(Box::new(utils::errors::SomethingIsWrongError::new("Invalid Entry, could not get the character"))),
+        None => {
+            return Err(Box::new(utils::errors::SomethingIsWrongError::new(
+                "Invalid Entry, could not get the character",
+            )))
+        }
     };
 
     // Create the Entry to return
-    Ok(Entry{
+    Ok(Entry {
         indexes: limits,
         character: character,
         password: fields[2].clone(),
@@ -60,25 +71,24 @@ pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
             // is in valid.
             // The problem also states that the indexes
             // start at 1, not 0, so -1 to the index.
-            let current_char: char = match entry.password.chars().nth(*index-1) {
+            let current_char: char = match entry.password.chars().nth(*index - 1) {
                 Some(current_char) => current_char,
                 None => continue,
             };
-            
+
             if current_char == entry.character {
                 matched = matched + 1;
-            };            
-        };
+            };
+        }
 
         // Only one index can match not both
         if matched == 1 {
-            valid_password_count= valid_password_count+1;
+            valid_password_count = valid_password_count + 1;
         }
-    };
+    }
 
     Ok(valid_password_count)
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -91,7 +101,7 @@ mod tests {
             "1-3 b: cdefg".to_string(),
             "2-9 c: ccccccccc".to_string(),
         ];
-        
+
         assert_eq!(solve(&input)?, 1);
         Ok(())
     }

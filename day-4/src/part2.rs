@@ -1,7 +1,6 @@
 extern crate utils;
-use std::fmt;
 use regex::Regex;
-
+use std::fmt;
 
 // Passport contains all of the possible
 // values a passport can hold.
@@ -27,7 +26,7 @@ struct Passport {
 
 impl Passport {
     fn new() -> Passport {
-        return Passport{
+        return Passport {
             birth_year: -1,
             issue_year: -1,
             expiration_year: -1,
@@ -36,7 +35,7 @@ impl Passport {
             eye_color: "".to_string(),
             passport_id: "".to_string(),
             country_id: "".to_string(),
-        }
+        };
     }
 
     // valid checks if the Passport is
@@ -54,22 +53,23 @@ impl Passport {
         // ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
         // pid (Passport ID) - a nine-digit number, including leading zeroes.
         // cid (Country ID) - ignored, missing or not.
-        let height_reg: Regex = Regex::new(r"^((59|6[0-9]|7[0-6]){1}in|1([5-8][0-9]|9[0-3]){1}cm)$").unwrap();
+        let height_reg: Regex =
+            Regex::new(r"^((59|6[0-9]|7[0-6]){1}in|1([5-8][0-9]|9[0-3]){1}cm)$").unwrap();
         let hair_color_reg: Regex = Regex::new(r"^#[0-9a-f]{6}$").unwrap();
         let eye_color_reg: Regex = Regex::new(r"^(amb|blu|brn|gry|grn|hzl|oth){1}$").unwrap();
         let passport_id_reg: Regex = Regex::new(r"^[0-9]{9}$").unwrap();
 
-        return self.birth_year >= 1920 &&
-            self.birth_year <= 2002 &&
-            self.issue_year >= 2010 &&
-            self.issue_year <= 2020 &&
-            self.expiration_year >= 2020 && 
-            self.expiration_year <= 2030 &&
-            height_reg.is_match(&self.height) &&
-            hair_color_reg.is_match(&self.hair_color) &&
-            eye_color_reg.is_match(&self.eye_color) &&
-            passport_id_reg.is_match(&self.passport_id);
-            // The country_id is optional
+        return self.birth_year >= 1920
+            && self.birth_year <= 2002
+            && self.issue_year >= 2010
+            && self.issue_year <= 2020
+            && self.expiration_year >= 2020
+            && self.expiration_year <= 2030
+            && height_reg.is_match(&self.height)
+            && hair_color_reg.is_match(&self.hair_color)
+            && eye_color_reg.is_match(&self.eye_color)
+            && passport_id_reg.is_match(&self.passport_id);
+        // The country_id is optional
     }
 }
 
@@ -105,7 +105,7 @@ fn parse_passports(lines: &Vec<String>) -> Result<Vec<Passport>, Box<dyn std::er
         if line == "" {
             passports.push(current_passport);
             current_passport = Passport::new();
-            continue
+            continue;
         }
 
         // Go through each field in the passport.
@@ -174,8 +174,9 @@ ecl:brn pid:760753108 byr:1931
 hgt:179cm
 
 hcl:#cfa07d eyr:2025 pid:166559648
-iyr:2011 ecl:brn hgt:59in".to_string();
-        
+iyr:2011 ecl:brn hgt:59in"
+            .to_string();
+
         let input: Vec<String> = file.lines().map(String::from).collect();
 
         assert_eq!(solve(&input)?, 2);

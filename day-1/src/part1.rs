@@ -34,9 +34,10 @@ pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
         entries.insert(current_entry);
     }
 
-    Err(Box::new(utils::errors::NoResultError::new("No entries matching requirements")))
+    Err(Box::new(utils::errors::NoResultError::new(
+        "No entries matching requirements",
+    )))
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -52,7 +53,7 @@ mod tests {
             "675".to_string(),
             "1456".to_string(),
         ];
-        
+
         assert_eq!(solve(&input)?, 514579);
         Ok(())
     }

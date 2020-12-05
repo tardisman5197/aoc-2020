@@ -31,23 +31,28 @@ pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
             // Found the partners, multiply them and return
             match added_entries.get(&needed_entry) {
                 Some(partners) => return Ok(current_entry * partners.0 * partners.1),
-                None => return Err(Box::new(utils::errors::SomethingIsWrongError::new("The map didn't contain the partners"))),
+                None => {
+                    return Err(Box::new(utils::errors::SomethingIsWrongError::new(
+                        "The map didn't contain the partners",
+                    )))
+                }
             }
         }
 
         // Compute all of the sums with all of the
         // entries in the input
         for entry in entries.iter() {
-            added_entries.insert(current_entry+entry, (current_entry, *entry));
+            added_entries.insert(current_entry + entry, (current_entry, *entry));
         }
         // Partners value not found, add this value to
         // the Vector of entries.
         entries.push(current_entry);
     }
 
-    Err(Box::new(utils::errors::NoResultError::new("No entries matching requirements")))
+    Err(Box::new(utils::errors::NoResultError::new(
+        "No entries matching requirements",
+    )))
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -63,7 +68,7 @@ mod tests {
             "675".to_string(),
             "1456".to_string(),
         ];
-        
+
         assert_eq!(solve(&input)?, 241861950);
         Ok(())
     }
