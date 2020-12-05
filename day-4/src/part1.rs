@@ -1,7 +1,6 @@
 extern crate utils;
 use std::fmt;
 
-
 // Passport contains all of the possible
 // values a passport can hold.
 #[derive(Debug)]
@@ -26,7 +25,7 @@ struct Passport {
 
 impl Passport {
     fn new() -> Passport {
-        return Passport{
+        return Passport {
             birth_year: -1,
             issue_year: -1,
             expiration_year: -1,
@@ -35,7 +34,7 @@ impl Passport {
             eye_color: "".to_string(),
             passport_id: "".to_string(),
             country_id: "".to_string(),
-        }
+        };
     }
 
     // valid checks if the Passport is
@@ -43,13 +42,13 @@ impl Passport {
     // field is present, with the exception of
     // the country_id.
     fn valid(&self) -> bool {
-        return self.birth_year != -1 &&
-        self.issue_year != -1 &&
-        self.expiration_year != -1 &&
-        self.height != "" &&
-        self.hair_color != "" &&
-        self.eye_color != "" &&
-        self.passport_id != "";
+        return self.birth_year != -1
+            && self.issue_year != -1
+            && self.expiration_year != -1
+            && self.height != ""
+            && self.hair_color != ""
+            && self.eye_color != ""
+            && self.passport_id != "";
         // The country_id is optional
         // self.country_id != ""
     }
@@ -87,7 +86,7 @@ fn parse_passports(lines: &Vec<String>) -> Result<Vec<Passport>, Box<dyn std::er
         if line == "" {
             passports.push(current_passport);
             current_passport = Passport::new();
-            continue
+            continue;
         }
 
         // Go through each field in the passport.
@@ -156,8 +155,9 @@ ecl:brn pid:760753108 byr:1931
 hgt:179cm
 
 hcl:#cfa07d eyr:2025 pid:166559648
-iyr:2011 ecl:brn hgt:59in".to_string();
-        
+iyr:2011 ecl:brn hgt:59in"
+            .to_string();
+
         let input: Vec<String> = file.lines().map(String::from).collect();
 
         assert_eq!(solve(&input)?, 2);

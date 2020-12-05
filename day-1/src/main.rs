@@ -4,12 +4,12 @@ mod part2;
 
 extern crate utils;
 
-use std::time::{Instant};
+use std::time::Instant;
 
 // main runs each part of the day's challenges
-fn main() -> Result<(),  Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Read in the input
-    let lines: Vec<String> = utils::read_file_lines("./inputs/day1.txt".to_string())?;
+    let lines: Vec<String> = utils::read_file_lines("./inputs/day1.txt")?;
 
     // Run the solutions
     let start = Instant::now();
@@ -20,13 +20,9 @@ fn main() -> Result<(),  Box<dyn std::error::Error>> {
     let part2_solution = part2::solve(&lines)?;
     let part2_duration = start.elapsed();
 
-
     println!("Day 3:");
     println!("\tPart 1: {} ({:?})", part1_solution, part1_duration);
     println!("\tPart 2: {} ({:?})", part2_solution, part2_duration);
 
-
     Ok(())
 }
-
-

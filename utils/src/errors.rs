@@ -6,7 +6,7 @@ use std::fmt;
 // be found.
 #[derive(Debug)]
 pub struct NoResultError {
-    details: String
+    details: String,
 }
 
 impl NoResultError {
@@ -14,7 +14,9 @@ impl NoResultError {
     // a description of the error can be passed in
     // as a parameter.
     pub fn new(msg: &str) -> NoResultError {
-        NoResultError{details: msg.to_string()}
+        NoResultError {
+            details: msg.to_string(),
+        }
     }
 }
 
@@ -22,7 +24,7 @@ impl NoResultError {
 // to allow for the error to be displayed.
 impl fmt::Display for NoResultError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f,"{}",self.details)
+        write!(f, "{}", self.details)
     }
 }
 
@@ -39,7 +41,7 @@ impl Error for NoResultError {
 // which shows if something has not worked.
 #[derive(Debug)]
 pub struct SomethingIsWrongError {
-    details: String
+    details: String,
 }
 
 impl SomethingIsWrongError {
@@ -47,7 +49,9 @@ impl SomethingIsWrongError {
     // a description of the error can be passed in
     // as a parameter.
     pub fn new(msg: &str) -> SomethingIsWrongError {
-        SomethingIsWrongError{details: msg.to_string()}
+        SomethingIsWrongError {
+            details: msg.to_string(),
+        }
     }
 }
 
@@ -55,7 +59,7 @@ impl SomethingIsWrongError {
 // to allow for the error to be displayed.
 impl fmt::Display for SomethingIsWrongError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f,"{}",self.details)
+        write!(f, "{}", self.details)
     }
 }
 

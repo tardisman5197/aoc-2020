@@ -13,20 +13,23 @@ pub fn solve(lines: &Vec<String>) -> Result<i32, Box<dyn std::error::Error>> {
     for (i, line) in lines.iter().enumerate() {
         // Calculate current position in line:
         //  (line_number*delta_right)%line_length
-        let current_position = match line.chars().nth((i*3)%line.len()) {
+        let current_position = match line.chars().nth((i * 3) % line.len()) {
             Some(current_position) => current_position,
-            None => return Err(Box::new(utils::errors::SomethingIsWrongError::new("Could not get position"))),
+            None => {
+                return Err(Box::new(utils::errors::SomethingIsWrongError::new(
+                    "Could not get position",
+                )))
+            }
         };
 
         // Check if it is a tree, if so count it
         if current_position == '#' {
             tree_count = tree_count + 1;
         };
-    };
+    }
 
     Ok(tree_count)
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -47,7 +50,7 @@ mod tests {
             "#...##....#".to_string(),
             ".#..#...#.#".to_string(),
         ];
-        
+
         assert_eq!(solve(&input)?, 7);
         Ok(())
     }
