@@ -5,11 +5,11 @@ use super::shared;
 // Go through each boarding pass and calculate the
 // seat id, then keep track of the highest seat id
 // seen.
-pub fn solve(lines: &Vec<String>) -> Result<i64, Box<dyn std::error::Error>> {
-    let mut highest_seat_id: i64 = 0;
+pub fn solve(lines: &Vec<String>) -> Result<u16, Box<dyn std::error::Error>> {
+    let mut highest_seat_id: u16 = 0;
 
     for line in lines.iter() {
-        let current_seat_id: i64 = shared::get_seat_id(shared::get_seat(line)?);
+        let current_seat_id: u16 = shared::get_seat_id(line)?;
         if current_seat_id > highest_seat_id {
             highest_seat_id = current_seat_id
         }
