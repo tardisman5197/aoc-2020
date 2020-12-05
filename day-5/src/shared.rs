@@ -8,7 +8,7 @@ pub fn get_seat_id(boarding_pass: &str) -> Result<u16, Box<dyn std::error::Error
             "Invalid Boarding Pass",
         )));
     }
-
+  
     let mut seat_id: u16 = 0;
 
     for (i, character) in boarding_pass.char_indices() {
@@ -24,6 +24,7 @@ pub fn get_seat_id(boarding_pass: &str) -> Result<u16, Box<dyn std::error::Error
     }
     Ok(seat_id)
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
