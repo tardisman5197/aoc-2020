@@ -4,12 +4,12 @@ use std::collections::HashSet;
 
 // solve attempts to solve part 2 of day 5 of AoC 2020.
 // Try and find my seat.
-pub fn solve(lines: &Vec<String>) -> Result<i64, Box<dyn std::error::Error>> {
-    let mut plane: HashSet<i64> = HashSet::new();
+pub fn solve(lines: &Vec<String>) -> Result<u16, Box<dyn std::error::Error>> {
+    let mut plane: HashSet<u16> = HashSet::new();
 
     // Fill the plane with other passengers.
     for line in lines.iter() {
-        plane.insert(shared::get_seat_id(shared::get_seat(line)?));
+        plane.insert(shared::get_seat_id(line)?);
     }
 
     for passenger in 0..(128 * 8) {
