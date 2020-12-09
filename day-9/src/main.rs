@@ -12,7 +12,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Run the solutions
     let start = Instant::now();
-    let part1_solution = part1::solve(&lines)?;
+    let part1_solution = part1::solve(&lines, 25)?;
     let part1_duration = start.elapsed();
 
     println!("Day 9:");
