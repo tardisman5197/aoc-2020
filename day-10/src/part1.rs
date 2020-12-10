@@ -1,6 +1,9 @@
 extern crate utils;
 
 // solve attempts to solve part 1 of day 10 of AoC 2020.
+// Tally the number of 1 and 3 gaps between all of the
+// adapters. Then this function returns the multiple
+// product of the two tallies.
 pub fn solve(lines: &Vec<String>) -> Result<i64, Box<dyn std::error::Error>> {
     let mut adapters: Vec<i64> = lines.iter().flat_map(|x| x.parse::<i64>()).collect();
     // Sort the adapters
