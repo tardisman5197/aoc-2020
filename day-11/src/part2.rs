@@ -1,7 +1,7 @@
 extern crate utils;
 
 // solve attempts to solve part 2 of day x of AoC 2020.
-pub fn solve(lines: &Vec<String>) -> Result<i64, Box<dyn std::error::Error>> {
+pub fn solve(_lines: &Vec<String>) -> Result<i64, Box<dyn std::error::Error>> {
     Ok(0)
 }
 
