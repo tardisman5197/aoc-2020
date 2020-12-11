@@ -1,6 +1,5 @@
 extern crate utils;
 use super::shared;
-use std::collections::HashSet;
 
 // solve attempts to solve part 1 of day 11 of AoC 2020.
 // Find all of the seats in the input, then for every round,
@@ -8,27 +7,7 @@ use std::collections::HashSet;
 // state of the seats does not change between rounds returned
 // the number of occupied seats.
 pub fn solve(lines: &Vec<String>) -> Result<usize, Box<dyn std::error::Error>> {
-    let seats: HashSet<(i64, i64)> = shared::get_seats(lines)?;
-
-    let mut previous_occupied: HashSet<(i64, i64)> = HashSet::new();
-
-    loop {
-        let mut occupied: HashSet<(i64, i64)> = HashSet::new();
-
-        for seat in seats.iter() {
-            if shared::update_seat(&seat, &previous_occupied) {
-                occupied.insert(*seat);
-            }
-        }
-
-        if previous_occupied == occupied {
-            break;
-        }
-
-        previous_occupied = occupied;
-    }
-
-    Ok(previous_occupied.len())
+    Ok(shared::occupied_seats_in_steady_state(lines, true)?)
 }
 
 #[cfg(test)]
